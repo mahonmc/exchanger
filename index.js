@@ -8,6 +8,8 @@ const {
 
 require('dotenv').config();
 
+var http = require('http');
+
 const {Guilds, GuildMembers, GuildMessages, MessageContent, DirectMessages} = GatewayIntentBits;
 const {User, Message, GuildMember, ThreadMember, Channel} = Partials;
 
@@ -20,6 +22,8 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+
+http.createServer(function (req, res) { res.write("I'm alive"); res.end(); }).listen(8080);
 
 client.login(process.env.BOT_TOKEN).then(() => {
     loadEvents(client);
